@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INIT_ROOT_USERNAME=root
+      - MONGO_INIT_ROOT_PASSWORD=password
+    networks:
+      - mongo_net
+    volumes:
+      - mongo_data:/data/db
+    container_name: mongodb
+
+
+  backend:
+    build: backend
+    image: backend
+    ports:
+      - 8000:8000
+    networks:
+      - mongo_net
+    depends_on:
+      - mongodb
+    container_name: backend
+
+  noticeboard:
+    build: frontend
+    image: frontend
+    ports:
+      - 3000:3000
+    networks:
+      - mongo_net
+    depends_on:
+      - mongodb
+      - backend
+    container_name: frontend
+
+networks:
+  mongo_net:
+
+volumes:
+  mongo_data:
