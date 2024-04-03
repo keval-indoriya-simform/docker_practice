@@ -1,11 +1,19 @@
 version: 0.0
 os: linux
+files:
+  - source: /
+    destination: ~/project/docker_practice/
+permissions:
+  - object:   
+    owner: ec2-user
+    group: ec2-user
+    mode: 777
 hooks:
-  ApplicationStart:
-    - location: ~/project/docker_practice/scripts/start_server
-      timeout: 300
-      runas: ec2-user
   ApplicationStop:
   - location: ~/project/docker_practice/scripts/stop_server
     timeout: 300
     runas: ec2-user
+  ApplicationStart:
+    - location: ~/project/docker_practice/scripts/start_server
+      timeout: 300
+      runas: ec2-user
