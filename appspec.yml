@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 hooks:
   ApplicationStart:
-    - location: scripts/start_server
+    - location: ~/project/docker_practice/scripts/start_server
       timeout: 300
       runas: root
   ApplicationStop:
-  - location: scripts/stop_server
+  - location: ~/project/docker_practice/scripts/stop_server
     timeout: 300
     runas: root
