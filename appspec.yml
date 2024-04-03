@@ -14,6 +14,6 @@ hooks:
   #   timeout: 300
   #   runas: root
   AfterInstall:
-    - location: /opt/codedeploy-agent/deployment-root/39004a29-79f5-4775-895b-3bfc3b3b5e86/d-98F18KED5/deployment-archive/scripts/start_server.sh
+    - location: ./scripts/start_server.sh
       timeout: 30
       runas: root
