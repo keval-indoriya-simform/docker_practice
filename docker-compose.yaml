@@ -27,7 +27,7 @@ services:
       - mongodb
     container_name: backend
 
-  noticeboard:
+  frontend:
     build: frontend
     image: frontend
     ports:
