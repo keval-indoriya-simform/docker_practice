@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/project/docker_practice/
+    destination: /
 permissions:
   - object: /
     owner: root
@@ -10,10 +10,10 @@ permissions:
     mode: 777
 hooks:
   ApplicationStop:
-  - location: /home/ec2-user/project/docker_practice/stop_server.sh
+  - location: script/stop_server.sh
     timeout: 300
     runas: root
-  ApplicationStart:
-    - location: /home/ec2-user/project/docker_practice/start_server.sh
+  AfterInstall:
+    - location: script/start_server.sh
       timeout: 300
       runas: root
