@@ -4,8 +4,8 @@ hooks:
   ApplicationStart:
     - location: ~/project/docker_practice/scripts/start_server
       timeout: 300
-      runas: root
+      runas: ec2-user
   ApplicationStop:
   - location: ~/project/docker_practice/scripts/stop_server
     timeout: 300
-    runas: root
+    runas: ec2-user
