@@ -4,7 +4,7 @@ files:
   - source: /
     destination: ~/project/docker_practice/
 permissions:
-  - object:   
+  - object: ~/project/docker_practice/
     owner: ec2-user
     group: ec2-user
     mode: 777
