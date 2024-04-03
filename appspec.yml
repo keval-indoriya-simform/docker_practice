@@ -9,10 +9,10 @@ permissions:
     group: root
     mode: 777
 hooks:
-  ApplicationStop:
-  - location: /script/stop_server.sh
-    timeout: 300
-    runas: root
+  # ApplicationStop:
+  # - location: /script/stop_server.sh
+  #   timeout: 300
+  #   runas: root
   AfterInstall:
     - location: /script/start_server.sh
       timeout: 300
