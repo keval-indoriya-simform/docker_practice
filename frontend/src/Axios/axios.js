@@ -1,5 +1,5 @@
 import axios from "axios"
-import getParameter from "../../utils/getParameters";
+import getParameter from "../utils/getParameters";
 
 
 const baseurl = await getParameter('BACKEND_ENDPOINT_KEVAL');
