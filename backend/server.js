@@ -7,11 +7,26 @@ import taskRouter from "./routes/taskRoute.js"
 import forgotPasswordRouter from "./routes/forgotPassword.js"
 import getParameter from "./utils/getParameters.js"
 
+
+async function getPort() {
+    try {
+       let port = await getParameter('PORT')
+       return port
+    } catch (err) {
+       console.error(err)
+    }
+   } 
+
+async function getMongoURI() {
+try {
+    let mongo_uri = await getParameter('MONGO_URI')
+    return mongo_uri
+} catch (err) {
+    console.error(err)
+}
+} 
 //app config
 const app = express()
-let port, mongo_uri;
-port =  getParameter('PORT');
-mongo_uri =  getParameter('MONGO_URI')
 
 mongoose.set('strictQuery', true);
 
@@ -20,7 +35,7 @@ app.use(express.json())
 app.use(cors())
 
 //db config
-mongoose.connect(mongo_uri, {
+mongoose.connect(getMongoURI(), {
     useNewUrlParser: true,
 }, (err) => {
     if (err) {
@@ -36,4 +51,5 @@ app.use("/api/task", taskRouter)
 app.use("/api/forgotPassword", forgotPasswordRouter)
 
 //listen
-app.listen(port, () => console.log(`Listening on localhost:${port}`))
+let port_listen = getPort()
+app.listen(port_listen, () => console.log(`Listening on localhost:${port_listen}`))
