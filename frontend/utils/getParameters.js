@@ -1,4 +1,4 @@
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
 
 // Configure AWS SDK with your region
 AWS.config.update({region: 'us-east-1'});
