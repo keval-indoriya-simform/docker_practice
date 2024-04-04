@@ -1,6 +1,6 @@
 import axios from "axios"
+import getParameter from "../../utils/getParameters";
 
-import getParameter from "../utils/getParameters.js";
 
 const baseurl = await getParameter('BACKEND_ENDPOINT_KEVAL');
 const instance = axios.create({
