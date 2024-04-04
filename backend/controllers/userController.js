@@ -5,7 +5,7 @@ import validator from "validator";
 
 import getParameter from "../utils/getParameters.js";
 
-const jwt_secret = await getParameter('JWT_SECRET');
+const jwt_secret = getParameter('JWT_SECRET');
 
 //create token
 const createToken = (id) => {

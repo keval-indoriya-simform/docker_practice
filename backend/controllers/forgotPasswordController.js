@@ -4,8 +4,8 @@ import crypto from "crypto"
 import bcrypt from "bcrypt"
 import getParameter from "../utils/getParameters.js";
 
-const gmail_username = await getParameter('GMAIL_USERNAME');
-const gmail_password = await getParameter('GMAIL_PASSWORD');
+const gmail_username =  getParameter('GMAIL_USERNAME');
+const gmail_password =  getParameter('GMAIL_PASSWORD');
 // Route to handle "forgot password" request
 const forgotPassword = async (req, res) => {
     const { email } = req.body;

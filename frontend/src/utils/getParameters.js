@@ -7,17 +7,26 @@ AWS.config.update({region: 'us-east-1'});
 const ssm = new AWS.SSM();
 
 // Function to fetch parameter value from Parameter Store
-export default async function getParameter(parameterName) {
+export default function getParameter(parameterName) {
     const params = {
-        Name: "arn:aws:ssm:us-east-1:654654485151:parameter/" + parameterName,
+        Name: parameterName,
         WithDecryption: true // If the parameter is encrypted
     };
 
-    try {
-        const data = await ssm.getParameter(params).promise();
-        return data.Parameter.Value;
-    } catch (err) {
-        console.error("Error fetching parameter:", err);
-        throw err;
-    }
+    let param = ssm.getParameters(params, (err, data) => {
+        if (err) {
+          console.error('Error fetching parameters:', err);
+        } else {
+          // Extract values from the response
+          const parameters = {};
+          data.Parameters.forEach(param => {
+            parameters[param.Name] = param.Value;
+          });
+      
+          console.log('Parameters from AWS Parameter Store:', parameters);
+        }
+      });
+
+      return param[0].Value
+    
 }

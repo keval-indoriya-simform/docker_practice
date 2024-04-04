@@ -2,14 +2,8 @@ import axios from "axios"
 import getParameter from "../utils/getParameters";
 
 let url;
-(async ()=>{
-    try{
-        url = await getParameter('BACKEND_ENDPOINT_KEVAL');
-    }
-    catch (err){
-        console.log("Error occured: ", err);
-    }
-})();
+url = getParameter('BACKEND_ENDPOINT_KEVAL')
+console.log(url)
 const instance = axios.create({
 	baseURL: url
 })

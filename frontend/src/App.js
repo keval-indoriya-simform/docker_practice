@@ -26,7 +26,6 @@ function App() {
     const fetchUser = async () => {
       try {
         console.log("fetchUser");
-        console.log(axios.toString)
         const res = await axios.get("/user/getUser",{
           headers: {
             Authorization: `Bearer ${userToken}`

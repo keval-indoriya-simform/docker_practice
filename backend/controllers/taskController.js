@@ -3,8 +3,8 @@ import userModel from "../models/userModel.js";
 import { createTransport } from 'nodemailer';
 import getParameter from "../utils/getParameters.js";
 
-const gmail_username = await getParameter('GMAIL_USERNAME');
-const gmail_password = await getParameter('GMAIL_PASSWORD');
+const gmail_username =  getParameter('GMAIL_USERNAME');
+const gmail_password =  getParameter('GMAIL_PASSWORD');
 const sendMail = (email, subject, title, description) => {
     var transporter = createTransport({
         service: 'gmail',

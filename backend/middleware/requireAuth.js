@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import getParameter from "../utils/getParameters.js";
 
-const jwt_secret = await getParameter('JWT_SECRET');
+const jwt_secret = getParameter('JWT_SECRET');
 const requireAuth = async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) {
