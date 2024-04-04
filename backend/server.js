@@ -10,7 +10,7 @@ import getParameter from "./utils/getParameters.js"
 //app config
 const app = express()
 const port = await getParameter('PORT');
-const mongo_uri = await getParameterer('MONGO_URI');
+const mongo_uri = await getParameter('MONGO_URI');
 mongoose.set('strictQuery', true);
 
 //middlewares
