@@ -1,4 +1,4 @@
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
 
 // Configure AWS SDK with your region
 AWS.config.update({region: 'us-east-1'});
@@ -9,7 +9,7 @@ const ssm = new AWS.SSM();
 // Function to fetch parameter value from Parameter Store
 export default async function getParameter(parameterName) {
     const params = {
-        Name: parameterName,
+        Name: "arn:aws:ssm:us-east-1:654654485151:parameter/" + parameterName,
         WithDecryption: true // If the parameter is encrypted
     };
 
