@@ -1,4 +1,7 @@
 import jwt from 'jsonwebtoken';
+import getParameter from "../utils/getParameters.js";
+
+const jwt_secret = await getParameter('JWT_SECRET');
 const requireAuth = async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) {
@@ -6,7 +9,7 @@ const requireAuth = async (req, res, next) => {
     }
     const token = authorization.split(' ')[1]+"";
     try {
-        const decoded =  jwt.verify(token, process.env.JWT_SECRET);
+        const decoded =  jwt.verify(token, jwt_secret);
         req.user = decoded;
         req.token = token;
         next();

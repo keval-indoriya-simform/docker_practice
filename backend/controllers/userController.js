@@ -3,9 +3,13 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
 
+import getParameter from "../utils/getParameters.js";
+
+const jwt_secret = await getParameter('JWT_SECRET');
+
 //create token
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET, {
+    return jwt.sign({id}, jwt_secret, {
         expiresIn: 3 * 24 * 60 * 60
     })
 }

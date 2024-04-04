@@ -1,14 +1,16 @@
 import taskModel from "../models/taskModel.js";
 import userModel from "../models/userModel.js";
 import { createTransport } from 'nodemailer';
-import dotenv from "dotenv";
-dotenv.config({path: "./../.env"});
+import getParameter from "../utils/getParameters.js";
+
+const gmail_username = await getParameterter('GMAIL_USERNAME');
+const gmail_password = await getParameter('GMAIL_PASSWORD');
 const sendMail = (email, subject, title, description) => {
     var transporter = createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.GMAIL_USERNAME,
-            pass: process.env.GMAIL_PASSWORD
+            user: gmail_username,
+            pass: gmail_password
         }
     });
 

@@ -2,9 +2,10 @@ import userModel from "../models/userModel.js";
 import { createTransport } from "nodemailer"
 import crypto from "crypto"
 import bcrypt from "bcrypt"
-import dotenv from "dotenv"
-dotenv.config({path: "./../.env"})
+import getParameter from "../utils/getParameters.js";
 
+const gmail_username = await getParameter('GMAIL_USERNAME');
+const gmail_password = await getParameter('GMAIL_PASSWORD');
 // Route to handle "forgot password" request
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
@@ -28,8 +29,8 @@ const forgotPassword = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            user: process.env.GMAIL_USERNAME,
-            pass: process.env.GMAIL_PASSWORD
+            user: gmail_username,
+            pass: gmail_password
         }
     });
 
