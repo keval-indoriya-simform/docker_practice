@@ -11,7 +11,7 @@ import getParameter from "./utils/getParameters.js"
 async function getPort() {
     try {
        let port = await getParameter('PORT')
-       return port
+       return port.toString
     } catch (err) {
        console.error(err)
     }
@@ -20,7 +20,7 @@ async function getPort() {
 async function getMongoURI() {
 try {
     let mongo_uri = await getParameter('MONGO_URI')
-    return mongo_uri
+    return mongo_uri.toString
 } catch (err) {
     console.error(err)
 }
@@ -34,16 +34,23 @@ mongoose.set('strictQuery', true);
 app.use(express.json())
 app.use(cors())
 
-//db config
-mongoose.connect(getMongoURI(), {
-    useNewUrlParser: true,
-}, (err) => {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log("DB Connected")
+(async () => {
+    try {
+        MONGO_URI = await getParameter('MONGO_URI');
+        port = await getParameter('PORT') || 8001;
+        mongoose.connect(MONGO_URI, {
+            useNewUrlParser: true,
+        }, (err) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log("DB Connected")
+            }
+        })
+    } catch {
+        console.log("An error occured");
     }
-})
+})();
 
 //api endpoints
 app.use("/api/user", userRouter)
@@ -51,5 +58,4 @@ app.use("/api/task", taskRouter)
 app.use("/api/forgotPassword", forgotPasswordRouter)
 
 //listen
-let port_listen = getPort()
-app.listen(port_listen, () => console.log(`Listening on localhost:${port_listen}`))
+app.listen(port, () => console.log(`Listening on localhost:${port}`))
