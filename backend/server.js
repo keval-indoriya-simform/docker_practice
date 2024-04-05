@@ -7,24 +7,6 @@ import taskRouter from "./routes/taskRoute.js"
 import forgotPasswordRouter from "./routes/forgotPassword.js"
 import getParameter from "./utils/getParameters.js"
 
-
-async function getPort() {
-    try {
-       let port = await getParameter('PORT')
-       return port.toString
-    } catch (err) {
-       console.error(err)
-    }
-   } 
-
-async function getMongoURI() {
-try {
-    let mongo_uri = await getParameter('MONGO_URI')
-    return mongo_uri.toString
-} catch (err) {
-    console.error(err)
-}
-} 
 //app config
 const app = express()
 
@@ -53,7 +35,7 @@ async function someFunc(){
     }
 };
 
-someFunc();
+await someFunc();
 
 //api endpoints
 app.use("/api/user", userRouter)
