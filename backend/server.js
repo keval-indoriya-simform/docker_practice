@@ -34,7 +34,8 @@ mongoose.set('strictQuery', true);
 app.use(express.json())
 app.use(cors())
 
-(async () => {
+ someFunc()
+ {
     try {
         MONGO_URI = await getParameter('MONGO_URI');
         port = await getParameter('PORT') || 8001;
@@ -42,21 +43,22 @@ app.use(cors())
             useNewUrlParser: true,
         }, (err) => {
             if (err) {
-                console.log(err)
+                console.log("Error inside mongo-----------------",err)
             } else {
                 console.log("DB Connected")
             }
         })
-        //api endpoints
-        app.use("/api/user", userRouter)
-        app.use("/api/task", taskRouter)
-        app.use("/api/forgotPassword", forgotPasswordRouter)
-
-        //listen
-        app.listen(port, () => console.log(`Listening on localhost:${port}`))
-        } catch {
-        console.log("An error occured");
+    } catch (err) {
+        console.log("An error occured in someFunc -----------", err);
     }
-})();
+};
 
+someFunc();
 
+//api endpoints
+app.use("/api/user", userRouter)
+app.use("/api/task", taskRouter)
+app.use("/api/forgotPassword", forgotPasswordRouter)
+
+//listen
+app.listen(port, () => console.log(`Listening on localhost:${port}`))

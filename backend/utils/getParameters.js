@@ -14,7 +14,7 @@ export default async function getParameter(parameterName) {
         const data = await ssm.getParameter(params).promise();
         return data.Parameter.Value;
     } catch (err) {
-        console.error("Error fetching parameter:", err);
+        console.error("Error fetching parameter:::::::::::::::::", err);
         throw err;
     }
 }
