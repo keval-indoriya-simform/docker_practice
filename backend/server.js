@@ -34,6 +34,7 @@ mongoose.set('strictQuery', true);
 app.use(express.json())
 app.use(cors())
 
+let port, MONGO_URI
 async function someFunc(){
     try {
         MONGO_URI = await getParameter('MONGO_URI');
