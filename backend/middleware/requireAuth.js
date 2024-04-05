@@ -1,7 +1,18 @@
 import jwt from 'jsonwebtoken';
 import getParameter from "../utils/getParameters.js";
 
-const jwt_secret = getParameter('JWT_SECRET');
+let jwt_secret
+
+async function someFunc(){
+    try {
+        jwt_secret = await getParameter('JWT_SECRET');
+    } catch (err) {
+        console.log("An error occured in someFunc -----------", err);
+    }
+};
+
+await someFunc();
+
 const requireAuth = async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) {

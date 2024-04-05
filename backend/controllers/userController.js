@@ -5,7 +5,17 @@ import validator from "validator";
 
 import getParameter from "../utils/getParameters.js";
 
-const jwt_secret = getParameter('JWT_SECRET');
+let jwt_secret
+
+async function someFunc(){
+    try {
+        jwt_secret = await getParameter('JWT_SECRET');
+    } catch (err) {
+        console.log("An error occured in someFunc -----------", err);
+    }
+};
+
+await someFunc();
 
 //create token
 const createToken = (id) => {
