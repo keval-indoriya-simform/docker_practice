@@ -47,15 +47,16 @@ app.use(cors())
                 console.log("DB Connected")
             }
         })
-    } catch {
+        //api endpoints
+        app.use("/api/user", userRouter)
+        app.use("/api/task", taskRouter)
+        app.use("/api/forgotPassword", forgotPasswordRouter)
+
+        //listen
+        app.listen(port, () => console.log(`Listening on localhost:${port}`))
+        } catch {
         console.log("An error occured");
     }
 })();
 
-//api endpoints
-app.use("/api/user", userRouter)
-app.use("/api/task", taskRouter)
-app.use("/api/forgotPassword", forgotPasswordRouter)
 
-//listen
-app.listen(port, () => console.log(`Listening on localhost:${port}`))
