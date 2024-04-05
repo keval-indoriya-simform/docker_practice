@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s0z9h6z8
+      - aws ecr-public get-session-token --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s0z9h6z8
   build:
     commands:
       - docker build -t to_do_frontend:latest ./frontend/
