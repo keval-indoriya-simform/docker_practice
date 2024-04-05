@@ -15,8 +15,7 @@ services:
 
 
   backend:
-    build: backend
-    image: backend
+    image: public.ecr.aws/s0z9h6z8/to_do_backend:latest
     ports:
       - 8000:8000
     networks:
@@ -26,8 +25,7 @@ services:
     container_name: backend
 
   frontend:
-    build: frontend
-    image: frontend
+    image: public.ecr.aws/s0z9h6z8/to_do_frontend:latest
     ports:
       - 80:3000
     networks:
