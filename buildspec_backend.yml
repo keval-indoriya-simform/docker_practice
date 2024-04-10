@@ -11,3 +11,6 @@ phases:
   post_build:
     commands:
       - docker push public.ecr.aws/s0z9h6z8/to_do_backend:latest
+      
+artifacts:
+  files: imagedefinitionsbackend.json
