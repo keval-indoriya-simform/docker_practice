@@ -22,6 +22,7 @@ async function someFunc(){
         port = await getParameter('PORT') || 8001;
         console.log("port :::::::::::::::::" + port)
         MONGO_URI = await getParameter('MONGO_URI');
+        console.log("uri:::::::::::::::::" + MONGO_URI)
         mongoose.connect(MONGO_URI, {
             useNewUrlParser: true,
         }, (err) => {
