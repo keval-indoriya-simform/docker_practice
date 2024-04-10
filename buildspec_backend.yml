@@ -8,9 +8,11 @@ phases:
     commands:
       - docker build -t to_do_backend:latest ./backend/
       - docker tag to_do_backend:latest public.ecr.aws/s0z9h6z8/to_do_backend:latest
+      - printf '[{"name":"container-name-here","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > $CODEBUILD_SRC_DIR/imagedefinitionsbackend.json
   post_build:
     commands:
       - docker push public.ecr.aws/s0z9h6z8/to_do_backend:latest
       
 artifacts:
-  files: imagedefinitionsbackend.json
+  files: 
+    - imagedefinitionsbackend.json
