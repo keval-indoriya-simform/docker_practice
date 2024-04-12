@@ -9,6 +9,7 @@ phases:
       - docker build -t to_do_frontend:latest ./frontend/
       - docker tag to_do_frontend:latest public.ecr.aws/s0z9h6z8/to_do_frontend:latest
       - printf '[{"name":"frontend","imageUri":"public.ecr.aws/s0z9h6z8/to_do_frontend"}]' public.ecr.aws/s0z9h6z8/to_do_frontend:latest > $CODEBUILD_SRC_DIR/imagedefinitionsfrontend.json
+  post_build:
     commands:
       - docker push public.ecr.aws/s0z9h6z8/to_do_frontend:latest
 
