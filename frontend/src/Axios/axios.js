@@ -1,5 +1,6 @@
 import axios from "axios"
+
 const instance = axios.create({
-	baseURL:"http://to-do-backend-536036014.us-east-1.elb.amazonaws.com:8000/api"
+	baseURL:`${process.env.API_URL}:8000/api`
 })
 export default instance
