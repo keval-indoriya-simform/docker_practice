@@ -8,11 +8,16 @@ phases:
     commands:
       - docker build -t to_do_backend:latest ./backend/
       - docker tag to_do_backend:latest public.ecr.aws/s0z9h6z8/to_do_backend:latest
-      - printf '[{"name":"backend","imageUri":"public.ecr.aws/s0z9h6z8/to_do_backend"}]' public.ecr.aws/s0z9h6z8/to_do_backend:latest > $CODEBUILD_SRC_DIR/imagedefinitionsbackend.json
+     
   post_build:
     commands:
       - docker push public.ecr.aws/s0z9h6z8/to_do_backend:latest
-  
+      - printf '[{"name":"backend","imageUri":"public.ecr.aws/s0z9h6z8/to_do_backend"}]' public.ecr.aws/s0z9h6z8/to_do_backend:latest > $CODEBUILD_SRC_DIR/imagedefinitionsbackend.json
+      - aws ecs describe-task-definition --task-definition  --region us-east-1 | jq .taskDefinition > taskdef.json
+      - cat taskdef.json | jq 'walk(if type == "array" and length == 0 then null else . end)' > taskdefbackend.json
+
 artifacts:
   files: 
+    - taskdefbackend.json
+    - appspec.yaml
     - imagedefinitionsbackend.json
