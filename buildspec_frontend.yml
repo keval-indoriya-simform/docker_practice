@@ -14,7 +14,7 @@ phases:
       - docker push public.ecr.aws/s0z9h6z8/to_do_frontend:latest
       - printf '[{"name":"frontend","imageUri":"public.ecr.aws/s0z9h6z8/to_do_frontend"}]' public.ecr.aws/s0z9h6z8/to_do_frontend:latest > $CODEBUILD_SRC_DIR/imagedefinitionsfrontend.json
       - aws ecs describe-task-definition --task-definition to_do_frontend --region us-east-1 | jq .taskDefinition > taskdeffrontend.json
-      - cat taskdef.json | jq 'walk(if type == "array" and length == 0 then null else . end)' > taskdef.json
+      - cat taskdeffrontend.json | jq 'walk(if type == "array" and length == 0 then null else . end)' > taskdeffrontend.json
 
 artifacts:
   files:
