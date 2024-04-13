@@ -19,5 +19,5 @@ phases:
 artifacts:
   files: 
     - taskdefbackend.json
-    - appspec.yaml
+    - appspec.yml
     - imagedefinitionsbackend.json
