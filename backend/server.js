@@ -25,6 +25,7 @@ async function someFunc(){
         console.log("uri:::::::::::::::::" + MONGO_URI)
         mongoose.connect(MONGO_URI, {
             useNewUrlParser: true,
+            useUnifiedTopology: true
         }, (err) => {
             if (err) {
                 console.log("Error inside mongo-----------------",err)
