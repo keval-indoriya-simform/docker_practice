@@ -32,7 +32,7 @@ on:
 
 env:
   AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: public.ecr.aws/s0z9h6z8/to_do_frontend           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: to_do_frontend           # set this to your Amazon ECR repository name
   ECS_SERVICE: frontend                 # set this to your Amazon ECS service name
   ECS_CLUSTER: to_do_cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: to_do_frontend # set this to the path to your Amazon ECS task definition
