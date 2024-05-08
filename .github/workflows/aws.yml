@@ -82,7 +82,7 @@ jobs:
     - name: Download task definition
       run: |
         aws ecs describe-task-definition --task-definition to_do_frontend --query taskDefinition > task-definition.json
-        cat task-definition.json | jq 'walk(if type == "array" and length == 0 then null else . end)' > task-definition.json
+        cat task-definition.json
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
