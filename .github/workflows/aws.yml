@@ -38,7 +38,6 @@ env:
   ECS_TASK_DEFINITION: to_do_frontend # set this to the path to your Amazon ECS task definition
   UNIQUE_ID: ${{ secrets.UNIQUE_ID }}
   CONTAINER_NAME: frontend           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
 
 permissions:
   contents: read
@@ -79,6 +78,11 @@ jobs:
         docker build -t $ECR_REGISTRY/$UNIQUE_ID/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$UNIQUE_ID/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$UNIQUE_ID/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json
+        cat task-definition.json | jq 'walk(if type == "array" and length == 0 then null else . end)' > task-definition.json
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
